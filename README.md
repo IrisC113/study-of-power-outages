@@ -1,6 +1,6 @@
 # Study of Power Outages
 
-**Name:** Shujia Chen, Mia Zhang(Sort by last name)
+**Name:** Shujia Chen, Qi Zhang(Sort by last name)
 
 ## Overview
 
