@@ -1,4 +1,7 @@
-# study-of-power-outages
+# Study of Power Outages
 
-This is a project for DSC 80 at UC San Diego.  
-We investigate patterns of power outages across regions and time using data science methods.
+This project is part of DSC 80 at UC San Diego.
+
+## Overview
+
+The project investigates patterns and causes of power outages using public datasets.
