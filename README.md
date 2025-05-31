@@ -2,7 +2,7 @@
 
 **Name:** Shujia Chen, Qi Zhang(Sort by last name)
 
-## Overview
+### Overview
 
 This project is part of DSC 80 at UC San Diego. The project investigates patterns and causes of power outages using public datasets.
 
