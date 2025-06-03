@@ -189,9 +189,13 @@ The model is evaluated using Root Mean Squared Error (RMSE), as this metric pena
 
 My model is a regression model that uses the features **CLIMATE.CATEGORY**, **YEAR**, and **RES.PRICE** to predict the duration of a major power outage in minutes. This information can help energy providers better prepare for the severity of outages and appropriate response strategies, such as  infrastructure planning.
 The features are:
+<<<<<<< HEAD
 
 **CLIMATE.CATEGORY (nominal)**, **YEAR (ordinal)** and **RES.PRICE (quantitative)**. The target column **OUTAGE.DURATION** is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
 
+=======
+**CLIMATE.CATEGORY (nominal)**, **YEAR (ordinal)** and **RES.PRICE (quantitative)**. The target column **OUTAGE.DURATION** is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
+>>>>>>> dd54d7a7e52d6b632f05f51dcf77c368fa7cdfc2
 The performance of this baseline model was modest, with an RMSE of 8919.55 minutes. This high error reflects the strong right-skew in outage duration, meaning a few extremely long outages greatly influence the overall prediction error.
 
 ## Final Model
