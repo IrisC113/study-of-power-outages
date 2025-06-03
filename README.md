@@ -54,7 +54,7 @@ Regional variability is revealed through a strip chart, with the Southeast (Sout
 <iframe
   src="assets/outage-duration-by-region.html"
   width="1000"
-  height="600"
+  height="700"
   frameborder="0"
 ></iframe>
 
@@ -62,7 +62,7 @@ Regional variability is revealed through a strip chart, with the Southeast (Sout
 The scatterplotshows a weak positive correlation between electricity prices and outage length (R² ≈ 0.18), with extreme cases of long outages (>50,000 minutes) occurring in areas of high electricity prices (>25 cents/kWh), suggesting that regulatory policy or underinvestment may be driving up both electricity prices and outage risk.
 <iframe
   src="assets/outage-vs-resprice.html"
-  width="800"
+  width="700"
   height="600"
   frameborder="0"
 ></iframe>
@@ -133,7 +133,7 @@ CONCLUSION: Missing outage lengths depend on climate category (warmer regions ar
 
 <iframe
   src="assets/missingness-vs-year.html"
-  width="800"
+  width="700"
   height="600"
   frameborder="0"
 ></iframe>
