@@ -15,7 +15,12 @@ This project is based on the U.S. Energy Information Administration's (EIA) publ
 We are committed to answering the key question, **How do climatic conditions and electricity price factors affect the duration and frequency of outages?** This research is of great relevance: power interruptions cause economic losses in the U.S. of about $150 billion per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused $19.5 billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
 
 The dataset contains 1,459 records of power outage events spanning 17 years. The following figure illustrates the distribution of key features:
-
+<iframe
+  src="assets/key-feature-statistics.html"
+  width="900"
+  height="400"
+  frameborder="0"
+></iframe>
 
 =======
 We are committed to answering the key question, ``**How do climatic conditions and electricity price factors affect the duration and frequency of outages?'' **"This research is of great relevance: power interruptions cause economic losses in the U.S. of about $150 billion per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused $19.5 billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
