@@ -47,6 +47,8 @@ A bar chart was used to compare the frequency of outages under different climati
 
 ### Bivariate Analysis
 
+In a bivariate analysis, we explored the association of outage duration with other variables:
+
 * Climate regional shadows
 Regional variability is revealed through a strip chart, with the Southeast (Southeast) having the longest median duration of outages (~8,000 minutes) and the West (West) having the shortest (~500 minutes), reflecting significant regional disparities in infrastructure resilience.
 <iframe
@@ -80,8 +82,6 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
   frameborder="0"
 ></iframe>
 
-
-
 ## Assessment of Missingness
 
 ### NMAR Analysis.
@@ -102,6 +102,44 @@ Event start time
 This additional information allows us to interpret the missing by features such as whether the event duration exceeds the report time.
 
 <iframe src="assets/missing_values.html" width="700" height="600" frameborder="0"></iframe>
+
+### Missingness Analysis
+We analyzed the relationship between missing OUTAGE.DURATION (outage duration) and the other columns:
+
+Dependencies: chi-square test showed that missing outage duration was significantly associated with climate category (χ²=15.32, p=0.004):
+
+Higher rate of missingness in warm climate regions (45% of all missingness)
+
+Normal climate regions had the lowest rate of missingness
+
+Climate category distribution
+
+Independent relationship: t-test showed no significant relationship between missing outage duration and year (t=1.08, p=0.28):
+
+Missing events were evenly distributed across years
+
+No year-specific missing patterns
+
+Year distribution
+
+CONCLUSION: Missing outage lengths depend on climate category (warmer regions are more likely to be missing), but are not related to year. This supports the NMAR hypothesis as warmer regions are more likely to experience prolonged outages (e.g., overloading of the grid due to heat waves) and these events are more likely to be unterminated.
+
+<!-- 气候类别 vs 缺失状态 -->
+<iframe
+  src="assets/missingness-vs-climate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<!-- 年份分布 vs 缺失状态 -->
+<iframe
+  src="assets/missingness-vs-year.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 ## Hypothesis Testing
 
