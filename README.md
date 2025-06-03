@@ -77,8 +77,8 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 - West North Central had the fastest recovery (only 697 minutes ≈ 11.6 hours).
 <iframe
   src="assets/avg-duration-by-region.html"
-  width="700"
-  height="400"
+  width="500"
+  height="200"
   frameborder="0"
 ></iframe>
 
