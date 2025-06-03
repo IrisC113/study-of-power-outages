@@ -181,8 +181,17 @@ The analysis provides no substantive evidence for a linear relationship between 
 
 ## Framing a Prediction Problem
 
+My prediction task is to predict the severity of a major power outage, measured by the duration of the outage in minutes.
+This is a regression problem because the response variable is continuous.
+At the time of prediction, we would know the year, climate category, region, and residential electricity price, so we restrict our model to only use features available at that time. These features may reflect the underlying factors, like regional weather patterns.
+The model is evaluated using Root Mean Squared Error (RMSE), as this metric penalizes larger prediction errors and is interpretable in the same unit as the target variable (minutes).
+
 ## Baseline Model
 
+
+
 ## Final Model
+
+
 
 ## Fairness Analysis
