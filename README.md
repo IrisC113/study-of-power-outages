@@ -12,13 +12,48 @@ This project is part of DSC 80 at UC San Diego. The project investigates pattern
 
 ## Data Cleaning and Exploratory Data Analysis
 
+### Data Cleaning
+
 In the data cleansing phase, We attempted numeric type conversion for all columns so that quantitative data such as year and tariff could be statistically analyzed, while retaining categorical variables that could not be converted. Double counting of data was avoided by removing duplicate rows. Finally, we focused on five key fields (year, climate category, climate region, length of outage, residential electricity price) to create an analyzed subset that retained some missing values to reflect the true data state. The cleaned dataset is ready to be used to explore the association of blackout events with climate/electricity price factors, as exemplified in below:
 <iframe
   src="assets/cleaned_table.html"
-  width="600"
+  width="700"
   height="500"
   frameborder="0"
 ></iframe>
+
+### Univariate Analysis
+
+In the univariate analysis, we focused on the distributional characteristics of the number of blackout events:
+
+#### Annual trends
+A line graph shows the change in the frequency of blackout events between 2000 and 2015. The data show clear peaks in 2003, 2008 and 2011, with a maximum in 2011 (around 600 events), indicating the presence of systemic risk factors (e.g. extreme weather or aging infrastructure) in these years.
+<iframe
+  src="assets/num-outages-over-time.html"
+  width="700"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+#### Climate category distribution
+A bar chart was used to compare the frequency of outages under different climatic conditions.” Normal” climate has the highest share of outages (about 75%), while ‘cold’ and ‘warm’ climates account for 15% and 10%, respectively, suggesting that the vulnerability of the grid is more of a concern in regular climate conditions.
+<iframe
+  src="assets/outages-by-climate.html"
+  width="700"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+最后一个表格
+<iframe
+  src="assets/avg-duration-by-region.html"
+  width="700"
+  height="400"
+  frameborder="0"
+></iframe>
+
 
 
 ## Assessment of Missingness
@@ -40,7 +75,7 @@ Event start time
 
 This additional information allows us to interpret the missing by features such as whether the event duration exceeds the report time.
 
-<iframe src="assets/missing_values.html" width="600" height="600" frameborder="0"></iframe>
+<iframe src="assets/missing_values.html" width="700" height="600" frameborder="0"></iframe>
 
 ## Hypothesis Testing
 
