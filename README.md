@@ -92,12 +92,12 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 ## Assessment of Missingness
 
 ### NMAR Analysis
-We focus on the missing pattern in the **OUTAGE.DURATION** column as belonging to **NMAR (Non-Missing at Random)**:  
+We focus on the missing pattern in the `OUTAGE.DURATION` column as belonging to **NMAR (Non-Missing at Random)**:  
 
 **Basis**: the length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. 
             probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
 
-**Converted to MAR Recommendation**: the following data need to be added  
+**Converted to MAR Recommendation**: the following data need to be added 
   - Outage event status (resolved or not)  
   - Report submission timestamp  
   - Event start time  
@@ -107,10 +107,11 @@ This additional information allows us to interpret the missing by features such 
 <iframe src="assets/missing_values.html" width="700" height="600" frameborder="0"></iframe>
 
 ### Missingness Dependency Analysis
-I will analyze the dependencies with CLIMATE.CATEGORY and YEAR for the missing case of OUTAGE.DURATION following the sample structure you provided.
+I will analyze the dependencies with `CLIMATE.CATEGORY` and `YEAR` for the missing case of `OUTAGE.DURATION` following the sample structure you provided.
 
 #### **Climate Category Analysis**
-- Research question: does the absence of OUTAGE.DURATION depend on climate category?
+- Research question: does the absence of `OUTAGE.DURATION` depend on climate category?
+
 -**Null hypothesis (H₀)**: the distribution of climate categories is the same in the time-length missing and non-missing groups
 
 -**Alternative hypothesis (H₁)**: the distribution of climate categories is different in the time-length missing and non-missing groups
@@ -194,21 +195,21 @@ The model is evaluated using Root Mean Squared Error (RMSE), as this metric pena
 
 ## Baseline Model
 
-My model is a regression model that uses the features **CLIMATE.CATEGORY**, **YEAR**, and **RES.PRICE** to predict the duration of a major power outage in minutes. This information can help energy providers better prepare for the severity of outages and appropriate response strategies, such as  infrastructure planning.
+My model is a regression model that uses the features `CLIMATE.CATEGORY, `YEAR`, and `RES.PRICE` to predict the duration of a major power outage in minutes. This information can help energy providers better prepare for the severity of outages and appropriate response strategies, such as  infrastructure planning.
 The features are:
 
-**CLIMATE.CATEGORY (nominal)**, **YEAR (ordinal)** and **RES.PRICE (quantitative)**. The target column OUTAGE.DURATION is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
+`CLIMATE.CATEGORY (nominal)`, `YEAR (ordinal)` and `RES.PRICE (quantitative)`. The target column OUTAGE.DURATION is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
 
 The performance of this baseline model was modest, with an RMSE of 8919.55 minutes. This high error reflects the strong right-skew in outage duration, meaning a few extremely long outages greatly influence the overall prediction error.
 
 ## Final Model
 
 **Final Model**
-For my final model, I used a RandomForestRegressor and included the original features from the baseline model，**CLIMATE.CATEGORY**, **YEAR**, **RES.PRICE**, and also two new engineered features: **YEAR_BUCKET** and **LOG_RES.PRICE**. These additions were meant to help the model capture patterns more effectively, especially given how skewed the outage durations are.
+For my final model, I used a RandomForestRegressor and included the original features from the baseline model，`CLIMATE.CATEGORY`, `YEAR`, `RES.PRICE`, and also two new engineered features: `YEAR_BUCKET` and `LOG_RES.PRICE`. These additions were meant to help the model capture patterns more effectively, especially given how skewed the outage durations are.
 
-**YEAR_BUCKET** groups years into 5-year intervals to simplify time-based patterns.
+`YEAR_BUCKET` groups years into 5-year intervals to simplify time-based patterns.
 
-**LOG_RES.PRICE** is the log-transformed version of residential electricity price, which helps reduce the impact of extreme values.
+`LOG_RES.PRICE` is the log-transformed version of residential electricity price, which helps reduce the impact of extreme values.
 
 I also applied a QuantileTransformer to the numerical features to handle outliers more robustly.
 
