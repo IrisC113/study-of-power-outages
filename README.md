@@ -18,7 +18,7 @@ In the data cleansing phase, We attempted numeric type conversion for all column
 <iframe
   src="assets/cleaned_table.html"
   width="700"
-  height="500"
+  height="600"
   frameborder="0"
 ></iframe>
 
