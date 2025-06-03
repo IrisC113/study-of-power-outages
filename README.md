@@ -22,17 +22,6 @@ The dataset contains 1,459 records of power outage events spanning 17 years. The
   frameborder="0"
 ></iframe>
 
-=======
-We are committed to answering the key question, ``**How do climatic conditions and electricity price factors affect the duration and frequency of outages?'' **"This research is of great relevance: power interruptions cause economic losses in the U.S. of about $150 billion per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused $19.5 billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
-
-The dataset contains 1,459 records of power outage events spanning 17 years. The following figure illustrates the distribution of key features:
-<iframe
-  src="assets/key-feature-statistics.html"
-  width="900"
-  height="400"
-  frameborder="0"
-></iframe>
-
 ## Data Cleaning and Exploratory Data Analysis
 
 ### Data Cleaning
@@ -220,20 +209,19 @@ The performance of this baseline model was modest, with an RMSE of 8919.55 minut
 
 ## Final Model
 
-**Final Model**
-For my final model, I used a RandomForestRegressor and included the original features from the baseline model，`CLIMATE.CATEGORY`, `YEAR`, `RES.PRICE`, and also two new engineered features: `YEAR_BUCKET` and `LOG_RES.PRICE`. These additions were meant to help the model capture patterns more effectively, especially given how skewed the outage durations are.
+For my final model, I used a RandomForestRegressor and included the original features from the baseline model，**CLIMATE.CATEGORY**, **YEAR**, **RES.PRICE**, and also two new engineered features: **YEAR_BUCKET** and **LOG_RES.PRICE**. 
 
-`YEAR_BUCKET` groups years into 5-year intervals to simplify time-based patterns.
+**YEAR_BUCKET** groups years into 5-year intervals to simplify time-based patterns, while **LOG_RES.PRICE** is the log-transformed version of residential electricity price, which helps reduce the impact of extreme values.
 
-`LOG_RES.PRICE` is the log-transformed version of residential electricity price, which helps reduce the impact of extreme values.
+These features were designed to help the model capture patterns more effectively, especially given how skewed the outage durations are.
 
-I also applied a QuantileTransformer to the numerical features to handle outliers more robustly.
+I applied a StandardScaler to the numerical features to stabilize model training. I considered using a QuantileTransformer to better handle outliers, but it caused instability and repetitive warnings during cross-validation. Eventually, StandardScaler was chosen because it's simple and effective, especially with tree-based models like Random Forest.
 
-To adjust model better, I used GridSearchCV and tested different combinations of hyperparameters. The best ones were:
+I used GridSearchCV to find the best hyperparameters and these were:
 - n_estimators: 200
 - max_depth: 10
 - min_samples_split: 2
 
-After training, the model achieved an RMSE of 8234.37 minutes, which is an improvement over the baseline model’s RMSE of 8919.55. It shows that adding relevant features and tuning the model carefully can lead to better performance, especially on data with a lot of variation like this.
+After training, the model achieved an RMSE of 8292.16 minutes, which is an improvement over the baseline model’s RMSE of 8919.55. It shows that adding relevant features and tuning the model carefully can lead to better performance, especially on data with a lot of variation like this.
 
 ## Fairness Analysis
