@@ -124,7 +124,6 @@ Year distribution
 
 CONCLUSION: Missing outage lengths depend on climate category (warmer regions are more likely to be missing), but are not related to year. This supports the NMAR hypothesis as warmer regions are more likely to experience prolonged outages (e.g., overloading of the grid due to heat waves) and these events are more likely to be unterminated.
 
-<!-- 气候类别 vs 缺失状态 -->
 <iframe
   src="assets/missingness-vs-climate.html"
   width="800"
@@ -132,7 +131,6 @@ CONCLUSION: Missing outage lengths depend on climate category (warmer regions ar
   frameborder="0"
 ></iframe>
 
-<!-- 年份分布 vs 缺失状态 -->
 <iframe
   src="assets/missingness-vs-year.html"
   width="800"
@@ -142,6 +140,42 @@ CONCLUSION: Missing outage lengths depend on climate category (warmer regions ar
 
 
 ## Hypothesis Testing
+
+We tested whether there is a significant linear correlation between outage duration and residential electricity prices
+
+### Research Problem
+
+**Null Hypothesis(H₀)**: Outage duration is not linearly correlated with electricity prices (ρ = 0)
+
+**Alternative hypothesis (H₁)**: Outage duration is linearly correlated with electricity price (ρ ≠ 0)
+
+### Test Methods
+
+1. Verify the correlation using the **placement test**:
+   - Calculate the observed Pearson correlation coefficient (r = 0.0100)
+   - Establish the null distribution by 10,000 random permutations
+   - Calculate how extreme the observations are in the null distribution
+
+2. Rationale for selection:
+   - Displacement test does not rely on normal distribution assumptions
+   - More robust than traditional t-test
+   - Good for medium sample size (n=1459)
+
+<iframe
+  src="assets/permutation-test-corr.html"
+  width="700"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Results
+
+**Observed correlation coefficient**: 0.0100
+**Placement test p-value**: 0.7025
+**Significance level**: α = 0.05
+
+### Conclusion 
+The analysis provides no substantive evidence for a linear relationship between outage duration and electricity prices. The statistically significant group difference warrants further investigation but should not be interpreted as evidence of a direct relationship between these specific variables without additional controls.
 
 ## Framing a Prediction Problem
 
