@@ -87,17 +87,17 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 ### NMAR Analysis.
 We analyzed the dataset for missing patterns, focusing on the missing OUTAGE.DURATION column. Based on the data collection process, we believe that the missing column is likely NMAR (non-random missing):
 
-Rationale for reasoning: power outage reports typically require the event to be completely over before the duration can be recorded. When an outage event is still in progress (power has not yet been restored), the utility is unable to report the exact duration, resulting in missing data. This missingness is directly related to the characteristics of the outage event itself (i.e., unobserved duration values).
+**Rationale for reasoning**: power outage reports typically require the event to be completely over before the duration can be recorded. When an outage event is still in progress (power has not yet been restored), the utility is unable to report the exact duration, resulting in missing data. This missingness is directly related to the characteristics of the outage event itself (i.e., unobserved duration values).
 
-NMAR JUDGEMENT: this missing mechanism meets the NMAR definition because the probability of missing depends on the unobserved value itself (prolonged outages are more likely to be missing).
+**NMAR JUDGEMENT**: this missing mechanism meets the NMAR definition because the probability of missing depends on the unobserved value itself (prolonged outages are more likely to be missing).
 
 Recommendation for conversion to MAR: additional data collection is required to make it MAR (missing at random):
 
-The “status” of the outage event (whether it was resolved or not)
+- The “status” of the outage event (whether it was resolved or not)
 
-Report submission timestamp
+- Report submission timestamp
 
-Event start time
+- Event start time
 
 This additional information allows us to interpret the missing by features such as whether the event duration exceeds the report time.
 
@@ -106,23 +106,23 @@ This additional information allows us to interpret the missing by features such 
 ### Missingness Analysis
 We analyzed the relationship between missing OUTAGE.DURATION (outage duration) and the other columns:
 
-Dependencies: chi-square test showed that missing outage duration was significantly associated with climate category (χ²=15.32, p=0.004):
+**Dependencies**: chi-square test showed that missing outage duration was significantly associated with climate category (χ²=15.32, p=0.004):
 
-Higher rate of missingness in warm climate regions (45% of all missingness)
+- Higher rate of missingness in warm climate regions (45% of all missingness)
 
-Normal climate regions had the lowest rate of missingness
+- Normal climate regions had the lowest rate of missingness
 
-Climate category distribution
+- Climate category distribution
 
-Independent relationship: t-test showed no significant relationship between missing outage duration and year (t=1.08, p=0.28):
+**Independent relationship**: t-test showed no significant relationship between missing outage duration and year (t=1.08, p=0.28):
 
-Missing events were evenly distributed across years
+- Missing events were evenly distributed across years
 
-No year-specific missing patterns
+- No year-specific missing patterns
 
-Year distribution
+- Year distribution
 
-CONCLUSION: Missing outage lengths depend on climate category (warmer regions are more likely to be missing), but are not related to year. This supports the NMAR hypothesis as warmer regions are more likely to experience prolonged outages (e.g., overloading of the grid due to heat waves) and these events are more likely to be unterminated.
+**CONCLUSION**: Missing outage lengths depend on climate category (warmer regions are more likely to be missing), but are not related to year. This supports the NMAR hypothesis as warmer regions are more likely to experience prolonged outages (e.g., overloading of the grid due to heat waves) and these events are more likely to be unterminated.
 
 <iframe
   src="assets/missingness-vs-climate.html"
