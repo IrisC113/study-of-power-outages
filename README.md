@@ -87,8 +87,8 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 ### NMAR Analysis
 We focus on the missing pattern in the **OUTAGE.DURATION** column as belonging to **NMAR (Non-Missing at Random)**:  
 
-**Basis**: the length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data
-             probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
+**Basis**: the length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. 
+            probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
 
 **Converted to MAR Recommendation**: the following data need to be added  
   - Outage event status (resolved or not)  
@@ -126,8 +126,8 @@ Research question: is the absence of OUTAGE.DURATION dependent on the year?
 -**Alternative hypothesis (H₁)**: the distribution of years is different in the time-length missing and non-missing groups
 <iframe
   src="assets/year-missingness-proportion.html"
-  width="600"
-  height="700"
+  width="700"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -173,7 +173,7 @@ We tested whether there is a significant linear correlation between outage durat
 ### Conclusion 
 The analysis provides no substantive evidence for a linear relationship between outage duration and electricity prices. The statistically significant group difference warrants further investigation but should not be interpreted as evidence of a direct relationship between these specific variables without additional controls.
 
-**Final recommendation**: tariff policy development should focus on regional economic factors rather than outage duration, and it is also recommended that more data on regional characteristics be collected to explain the observed patterns of tariff differences.
+**Final Recommendation**: tariff policy development should focus on regional economic factors rather than outage duration, and it is also recommended that more data on regional characteristics be collected to explain the observed patterns of tariff differences.
 
 ## Framing a Prediction Problem
 
@@ -189,13 +189,9 @@ The model is evaluated using Root Mean Squared Error (RMSE), as this metric pena
 
 My model is a regression model that uses the features **CLIMATE.CATEGORY**, **YEAR**, and **RES.PRICE** to predict the duration of a major power outage in minutes. This information can help energy providers better prepare for the severity of outages and appropriate response strategies, such as  infrastructure planning.
 The features are:
-<<<<<<< HEAD
 
-**CLIMATE.CATEGORY (nominal)**, **YEAR (ordinal)** and **RES.PRICE (quantitative)**. The target column **OUTAGE.DURATION** is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
+**CLIMATE.CATEGORY (nominal)**, **YEAR (ordinal)** and **RES.PRICE (quantitative)**. The target column OUTAGE.DURATION is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
 
-=======
-**CLIMATE.CATEGORY (nominal)**, **YEAR (ordinal)** and **RES.PRICE (quantitative)**. The target column **OUTAGE.DURATION** is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
->>>>>>> dd54d7a7e52d6b632f05f51dcf77c368fa7cdfc2
 The performance of this baseline model was modest, with an RMSE of 8919.55 minutes. This high error reflects the strong right-skew in outage duration, meaning a few extremely long outages greatly influence the overall prediction error.
 
 ## Final Model
