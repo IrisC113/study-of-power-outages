@@ -1,4 +1,4 @@
-# Study of Power Outages
+# Dark Data: Exploring Power Outage
 
 **Name:** Shujia Chen, Qi Zhang(Sort by last name)
 
@@ -10,16 +10,23 @@ This project is part of DSC 80 at UC San Diego. The project investigates pattern
 
 ##  Introduction
 
+This project is based on the U.S. Energy Information Administration's (EIA) publicly available outage dataset, which systematically documents large-scale power outages across the U.S. for the period **2000-2016**. The raw data contains multiple dimensions of grid operational metrics, and after rigorous cleaning, we focus on five core variables: year of event (`YEAR`), climate condition classification (`CLIMATE.CATEGORY`), geoclimatic region (`CLIMATE.REGION`), outage duration (`OUTAGE.DURATION`) , and residential electricity price (`RES.PRICE`). Together, these variables form the basis for analyzing the impact of climate and energy-economic factors on grid stability.
+
+We are committed to answering the key question, ``**How do climatic conditions and electricity price factors affect the duration and frequency of outages?'' **"This research is of great relevance: power interruptions cause economic losses in the U.S. of about $150 billion per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused $19.5 billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
+
+The dataset contains 1,459 records of power outage events spanning 17 years. The following figure illustrates the distribution of key features:
+
+
 ## Data Cleaning and Exploratory Data Analysis
 
 ### Data Cleaning
 
 In the data cleansing phase, We attempted numeric type conversion for all columns so that quantitative data such as year and tariff could be statistically analyzed, while retaining categorical variables that could not be converted. Double counting of data was avoided by removing duplicate rows. Finally, we focused on five key fields (year, climate category, climate region, length of outage, residential electricity price) to create an analyzed subset that retained some missing values to reflect the true data state. The cleaned dataset is ready to be used to explore the association of blackout events with 
 <iframe
-    src="assets/cleaned_outage_subset.html"
-    width="700"
-    height="600"
-    frameborder="0"
+  src="assets/cleaned_outage_subset.html"
+  width="700"
+  height="600"
+  frameborder="0"
 ></iframe>
 
 ### Univariate Analysis
