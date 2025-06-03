@@ -78,7 +78,7 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 <iframe
   src="assets/avg-duration-by-region.html"
   width="500"
-  height="200"
+  height="600"
   frameborder="0"
 ></iframe>
 
