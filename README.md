@@ -126,8 +126,8 @@ Research question: is the absence of OUTAGE.DURATION dependent on the year?
 -**Alternative hypothesis (H₁)**: the distribution of years is different in the time-length missing and non-missing groups
 <iframe
   src="assets/year-missingness-proportion.html"
-  width="1000"
-  height="600"
+  width="600"
+  height="700"
   frameborder="0"
 ></iframe>
 
