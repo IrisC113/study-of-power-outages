@@ -108,7 +108,7 @@ I will analyze the dependencies with CLIMATE.CATEGORY and YEAR for the missing c
 
 -**Alternative hypothesis (H₁)**: the distribution of climate categories is different in the time-length missing and non-missing groups
 <iframe
-  src="assets/climate-missingness-proportion.html"
+  src="assets/year-missingness-proportion.html"
   width="700"
   height="600"
   frameborder="0"
