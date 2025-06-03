@@ -151,7 +151,7 @@ We tested whether there is a significant linear correlation between outage durat
 
 ### Test Methods
 
-1. Verify the correlation using the **placement test**:
+1. Verify the correlation using the **Permutation test**:
    - Calculate the observed Pearson correlation coefficient (r = 0.0100)
    - Establish the null distribution by 10,000 random permutations
    - Calculate how extreme the observations are in the null distribution
@@ -170,12 +170,14 @@ We tested whether there is a significant linear correlation between outage durat
 
 ### Results
 
-**Observed correlation coefficient**: 0.0100
-**Placement test p-value**: 0.7025
-**Significance level**: α = 0.05
+- **Observed correlation coefficient**: 0.0100
+- **Placement test p-value**: 0.7025
+- **Significance level**: α = 0.05
 
 ### Conclusion 
 The analysis provides no substantive evidence for a linear relationship between outage duration and electricity prices. The statistically significant group difference warrants further investigation but should not be interpreted as evidence of a direct relationship between these specific variables without additional controls.
+
+**Final recommendation**: tariff policy development should focus on regional economic factors rather than outage duration, and it is also recommended that more data on regional characteristics be collected to explain the observed patterns of tariff differences.
 
 ## Framing a Prediction Problem
 
