@@ -12,7 +12,7 @@ This project is part of DSC 80 at UC San Diego. The project investigates pattern
 
 This project is based on the U.S. Energy Information Administration's (EIA) publicly available outage dataset, which systematically documents large-scale power outages across the U.S. for the period **2000-2016**. The raw data contains multiple dimensions of grid operational metrics, and after rigorous cleaning, we focus on five core variables: year of event (`YEAR`), climate condition classification (`CLIMATE.CATEGORY`), geoclimatic region (`CLIMATE.REGION`), outage duration (`OUTAGE.DURATION`) , and residential electricity price (`RES.PRICE`). Together, these variables form the basis for analyzing the impact of climate and energy-economic factors on grid stability.
 
-We are committed to answering the key question, **How do climatic conditions and electricity price factors affect the duration and frequency of outages?** This research is of great relevance: power interruptions cause economic losses in the U.S. of about $50 billion per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused $19.5 billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
+We are committed to answering the key question, **How do climatic conditions and electricity price factors affect the duration and frequency of outages?** This research is of great relevance: power interruptions cause economic losses in the U.S. of about 50 billion dollar per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused 19.5 dollar billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
 
 The dataset contains 1,459 records of power outage events spanning 17 years. The following figure illustrates the distribution of key features:
 <iframe
@@ -225,3 +225,30 @@ I used GridSearchCV to find the best hyperparameters and these were:
 After training, the model achieved an RMSE of 8292.16 minutes, which is an improvement over the baseline model’s RMSE of 8919.55. It shows that adding relevant features and tuning the model carefully can lead to better performance, especially on data with a lot of variation like this.
 
 ## Fairness Analysis
+
+**Groups:**  
+- **Group X**: Outages in high electricity price regions (RES.PRICE > national median)  
+- **Group Y**: Outages in low electricity price regions (RES.PRICE ≤ national median)  
+
+**Evaluation Metric:** RMSE (Root Mean Squared Error)  
+
+**Hypotheses:**  
+- Null Hypothesis (H₀): The model is fair. RMSE for Group X and Group Y are equal.  
+- Alternative Hypothesis (H₁): The model is unfair. RMSE for Group X (high-price) is higher than Group Y.
+
+<iframe
+  src="assets/rmse_diff_bootstrap_distribution.html"
+  width="700"
+  height="600"
+  frameborder="0"
+></iframe>
+
+**Test Statistic:** Difference in RMSE (RMSE_X - RMSE_Y)  
+**Significance Level:** α = 0.05  
+**p-value:** 0.42
+
+**Conclusion:**  
+Based on the statistical analysis (p = 0.42 > 0.05), we fail to reject the null hypothesis, indicating that the observed RMSE difference of -0.008 minutes between high and low electricity price regions is not statistically significant. This suggests that the model’s prediction error in high-price areas is slightly lower, but the difference is likely due to random variation. Therefore, there is no evidence that the model performs unfairly in high-price regions, demonstrating compliance with fairness requirements.
+
+**Recommendation:**  
+Maintain the current model without region-specific adjustments related to electricity price. Implement ongoing monitoring of model stability through periodic recalculation of RMSE differences between groups and automate fairness testing workflows. Additionally, expand fairness analysis to include other sensitive subgroups, such as climatic zones and socioeconomic factors. For future improvements, consider incorporating features unique to high-price areas and investigating potential nonlinear relationships between electricity price and outage duration.
