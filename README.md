@@ -12,7 +12,7 @@ This project is part of DSC 80 at UC San Diego. The project investigates pattern
 
 This project is based on the U.S. Energy Information Administration's (EIA) publicly available outage dataset, which systematically documents large-scale power outages across the U.S. for the period **2000-2016**. The raw data contains multiple dimensions of grid operational metrics, and after rigorous cleaning, we focus on five core variables: year of event (`YEAR`), climate condition classification (`CLIMATE.CATEGORY`), geoclimatic region (`CLIMATE.REGION`), outage duration (`OUTAGE.DURATION`) , and residential electricity price (`RES.PRICE`). Together, these variables form the basis for analyzing the impact of climate and energy-economic factors on grid stability.
 
-We are committed to answering the key question, **How do climatic conditions and electricity price factors affect the duration and frequency of outages?** This research is of great relevance: power interruptions cause economic losses in the U.S. of about $150 billion per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused $19.5 billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
+We are committed to answering the key question, **How do climatic conditions and electricity price factors affect the duration and frequency of outages?** This research is of great relevance: power interruptions cause economic losses in the U.S. of about $50 billion per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused $19.5 billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
 
 The dataset contains 1,459 records of power outage events spanning 17 years. The following figure illustrates the distribution of key features:
 <iframe
@@ -117,9 +117,9 @@ I will analyze the dependencies with `CLIMATE.CATEGORY` and `YEAR` for the missi
 #### **Climate Category Analysis**
 - Research question: does the absence of `OUTAGE.DURATION` depend on climate category?
 
--**Null hypothesis (H₀)**: the distribution of climate categories is the same in the time-length missing and non-missing groups
+-**Null hypothesis (H₀)**: the distribution of climate categories is the same in the time-length missing and non-missing groups.
 
--**Alternative hypothesis (H₁)**: the distribution of climate categories is different in the time-length missing and non-missing groups
+-**Alternative hypothesis (H₁)**: the distribution of climate categories is different in the time-length missing and non-missing groups.
 <iframe
   src="assets/climate-missingness-proportion.html"
   width="1000"
@@ -134,9 +134,9 @@ The analysis shows that there is a significant difference between the missing an
 #### **Year Analysis**
 Research question: is the absence of OUTAGE.DURATION dependent on the year?
 
--**Null hypothesis (H₀)**: the distribution of years is the same in the missing and non-missing groups in terms of length of time
+-**Null hypothesis (H₀)**: the distribution of years is the same in the missing and non-missing groups in terms of length of time.
 
--**Alternative hypothesis (H₁)**: the distribution of years is different in the time-length missing and non-missing groups
+-**Alternative hypothesis (H₁)**: the distribution of years is different in the time-length missing and non-missing groups.
 <iframe
   src="assets/year-missingness-proportion.html"
   width="1000"
@@ -150,25 +150,25 @@ The analysis showed that there was no significant difference in year distributio
 
 ## Hypothesis Testing
 
-We tested whether there is a significant linear correlation between outage duration and residential electricity prices
+We tested whether there is a significant linear correlation between outage duration and residential electricity prices.
 
 ### Research Problem
 
-**Null Hypothesis(H₀)**: Outage duration is not linearly correlated with electricity prices (ρ = 0)
+**Null Hypothesis(H₀)**: Outage duration is not linearly correlated with electricity prices (ρ = 0).
 
-**Alternative hypothesis (H₁)**: Outage duration is linearly correlated with electricity price (ρ ≠ 0)
+**Alternative hypothesis (H₁)**: Outage duration is linearly correlated with electricity price (ρ ≠ 0).
 
 ### Test Methods
 
 1. Verify the correlation using the **Permutation test**:
-   - Calculate the observed Pearson correlation coefficient (r = 0.0100)
-   - Establish the null distribution by 10,000 random permutations
-   - Calculate how extreme the observations are in the null distribution
+   - Calculate the observed Pearson correlation coefficient (r = 0.0100).
+   - Establish the null distribution by 10,000 random permutations.
+   - Calculate how extreme the observations are in the null distribution.
 
 2. Rationale for selection:
-   - Displacement test does not rely on normal distribution assumptions
-   - More robust than traditional t-test
-   - Good for medium sample size (n=1459)
+   - Displacement test does not rely on normal distribution assumptions.
+   - More robust than traditional t-test.
+   - Good for medium sample size (n=1459).
 
 <iframe
   src="assets/permutation-test-corr.html"
