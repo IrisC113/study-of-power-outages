@@ -15,6 +15,7 @@ This project is based on the U.S. Energy Information Administration's (EIA) publ
 We are committed to answering the key question, **How do climatic conditions and electricity price factors affect the duration and frequency of outages?** This research is of great relevance: power interruptions cause economic losses in the U.S. of about 50 billion dollar per year on average (U.S. Department of Energy, 2022). For example, the Texas cold snap in 2021 left 5 million people without power and caused 19.5 dollar billion in damages, and the California precautionary outage in 2019 affected 3 million residents. By revealing patterns of climate and electricity price impacts on grid stability, this study can provide data-driven decision support for grid upgrade priority zone identification, extreme weather contingency planning, and electricity price policy reform.
 
 The dataset contains 1,459 records of power outage events spanning 17 years. The following figure illustrates the distribution of key features:
+
 <iframe
   src="assets/key-feature-statistics.html"
   width="900"
@@ -27,6 +28,7 @@ The dataset contains 1,459 records of power outage events spanning 17 years. The
 ### Data Cleaning
 
 In the data cleansing phase, We attempted numeric type conversion for all columns so that quantitative data such as year and tariff could be statistically analyzed, while retaining categorical variables that could not be converted. Double counting of data was avoided by removing duplicate rows. Finally, we focused on five key fields (year, climate category, climate region, length of outage, residential electricity price) to create an analyzed subset that retained some missing values to reflect the true data state. The cleaned dataset is ready to be used to explore the association of blackout events with 
+
 <iframe
   src="assets/cleaned_outage_subset.html"
   width="700"
@@ -40,6 +42,7 @@ In the univariate analysis, we focused on the distributional characteristics of 
 
 * Annual trends
 A line graph shows the change in the frequency of blackout events between 2000 and 2015. The data show clear peaks in 2003, 2008 and 2011, with a maximum in 2011 (around 600 events), indicating the presence of systemic risk factors (e.g. extreme weather or aging infrastructure) in these years.
+
 <iframe
   src="assets/num-outages-over-time.html"
   width="700"
@@ -50,6 +53,7 @@ A line graph shows the change in the frequency of blackout events between 2000 a
 
 * Climate category distribution
 A bar chart was used to compare the frequency of outages under different climatic conditions.” Normal” climate has the highest share of outages (about 75%), while ‘cold’ and ‘warm’ climates account for 15% and 10%, respectively, suggesting that the vulnerability of the grid is more of a concern in regular climate conditions.
+
 <iframe
   src="assets/outages-by-climate.html"
   width="700"
@@ -63,6 +67,7 @@ In a bivariate analysis, we explored the association of outage duration with oth
 
 * Climate regional shadows
 Regional variability is revealed through a strip chart, with the Southeast (Southeast) having the longest median duration of outages (~8,000 minutes) and the West (West) having the shortest (~500 minutes), reflecting significant regional disparities in infrastructure resilience.
+
 <iframe
   src="assets/outage-duration-by-region.html"
   width="1000"
@@ -72,6 +77,7 @@ Regional variability is revealed through a strip chart, with the Southeast (Sout
 
 * Electricity price correlation
 The scatterplotshows a weak positive correlation between electricity prices and outage length (R² ≈ 0.18), with extreme cases of long outages (>50,000 minutes) occurring in areas of high electricity prices (>25 cents/kWh), suggesting that regulatory policy or underinvestment may be driving up both electricity prices and outage risk.
+
 <iframe
   src="assets/outage-vs-resprice.html"
   width="700"
@@ -87,6 +93,7 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 - West and Southwest perform best (1,628 minutes and 1,566 minutes ≈ 27 hours);
 
 - West North Central had the fastest recovery (only 697 minutes ≈ 11.6 hours).
+
 <iframe
   src="assets/avg-duration-by-region.html"
   width="500"
@@ -116,11 +123,12 @@ This additional information allows us to interpret the missing by features such 
 I will analyze the dependencies with `CLIMATE.CATEGORY` and `YEAR` for the missing case of `OUTAGE.DURATION` following the sample structure you provided.
 
 #### **Climate Category Analysis**
-- Research question: does the absence of `OUTAGE.DURATION` depend on climate category?
+Research question: does the absence of `OUTAGE.DURATION` depend on climate category?
 
--**Null hypothesis (H₀):** the distribution of climate categories is the same in the time-length missing and non-missing groups.
+- **Null hypothesis (H₀):** the distribution of climate categories is the same in the time-length missing and non-missing groups.
 
--**Alternative hypothesis (H₁):** the distribution of climate categories is different in the time-length missing and non-missing groups.
+- **Alternative hypothesis (H₁):** the distribution of climate categories is different in the time-length missing and non-missing groups.
+
 <iframe
   src="assets/climate-missingness-proportion.html"
   width="1000"
@@ -135,9 +143,10 @@ The analysis shows that there is a significant difference between the missing an
 #### **Year Analysis**
 Research question: is the absence of OUTAGE.DURATION dependent on the year?
 
--**Null hypothesis (H₀):** the distribution of years is the same in the missing and non-missing groups in terms of length of time.
+- **Null hypothesis (H₀):** the distribution of years is the same in the missing and non-missing groups in terms of length of time.
 
--**Alternative hypothesis (H₁):** the distribution of years is different in the time-length missing and non-missing groups.
+- **Alternative hypothesis (H₁):** the distribution of years is different in the time-length missing and non-missing groups.
+
 <iframe
   src="assets/year-missingness-proportion.html"
   width="1000"
@@ -242,6 +251,7 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 **Hypotheses:**  
 - **Null Hypothesis (H₀):** The model is fair. RMSE for Group X and Group Y are equal.  
 - **Alternative Hypothesis (H₁):** The model is unfair. RMSE for Group X (high-price) is higher than Group Y.
+
 <iframe
   src="assets/permutation-test-cold-warm.html"
   width="1000"
