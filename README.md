@@ -97,12 +97,13 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 ## Assessment of Missingness
 
 ### NMAR Analysis
-We focus on the missing pattern in the `OUTAGE.DURATION` column as belonging to **NMAR (Non-Missing at Random)**:  
+We focus on the missing pattern in the `OUTAGE.DURATION` column as belonging to **NMAR (Non-Missing at Random):** 
 
-**Basis**: the length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. 
-            probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
+**Basis:**
 
-**Converted to MAR Recommendation**: the following data need to be added 
+the length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
+
+**Converted to MAR Recommendation:** the following data need to be added 
   - Outage event status (resolved or not)  
   - Report submission timestamp  
   - Event start time  
@@ -117,9 +118,9 @@ I will analyze the dependencies with `CLIMATE.CATEGORY` and `YEAR` for the missi
 #### **Climate Category Analysis**
 - Research question: does the absence of `OUTAGE.DURATION` depend on climate category?
 
--**Null hypothesis (H₀)**: the distribution of climate categories is the same in the time-length missing and non-missing groups.
+-**Null hypothesis (H₀):** the distribution of climate categories is the same in the time-length missing and non-missing groups.
 
--**Alternative hypothesis (H₁)**: the distribution of climate categories is different in the time-length missing and non-missing groups.
+-**Alternative hypothesis (H₁):** the distribution of climate categories is different in the time-length missing and non-missing groups.
 <iframe
   src="assets/climate-missingness-proportion.html"
   width="1000"
@@ -134,9 +135,9 @@ The analysis shows that there is a significant difference between the missing an
 #### **Year Analysis**
 Research question: is the absence of OUTAGE.DURATION dependent on the year?
 
--**Null hypothesis (H₀)**: the distribution of years is the same in the missing and non-missing groups in terms of length of time.
+-**Null hypothesis (H₀):** the distribution of years is the same in the missing and non-missing groups in terms of length of time.
 
--**Alternative hypothesis (H₁)**: the distribution of years is different in the time-length missing and non-missing groups.
+-**Alternative hypothesis (H₁):** the distribution of years is different in the time-length missing and non-missing groups.
 <iframe
   src="assets/year-missingness-proportion.html"
   width="1000"
@@ -154,9 +155,9 @@ We tested whether there is a significant linear correlation between outage durat
 
 ### Research Problem
 
-**Null Hypothesis(H₀)**: Outage duration is not linearly correlated with electricity prices (ρ = 0).
+**Null Hypothesis(H₀):** Outage duration is not linearly correlated with electricity prices (ρ = 0).
 
-**Alternative hypothesis (H₁)**: Outage duration is linearly correlated with electricity price (ρ ≠ 0).
+**Alternative hypothesis (H₁):** Outage duration is linearly correlated with electricity price (ρ ≠ 0).
 
 ### Test Methods
 
@@ -177,11 +178,12 @@ We tested whether there is a significant linear correlation between outage durat
   frameborder="0"
 ></iframe>
 
-- **Observed correlation coefficient**: 0.0044
-- **Placement test p-value**: 0.8666
-- **Significance level**: α = 0.05
+- **Observed correlation coefficient:** 0.0044
+- **Placement test p-value:** 0.8666
+- **Significance level:** α = 0.05
 
-**Conclusion**
+**Conclusion:**
+
 Fail to reject the null hypothesis (p-value = 0.8666 > 0.05). There is no statistically significant linear correlation between outage duration and residential electricity prices. The observed correlation coefficient (0.0044) is consistent with random chance under the null hypothesis of no correlation.
 
 **Final Recommendation:**
@@ -232,8 +234,8 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 ## Fairness Analysis
 
 **Groups:**  
-- **Group X**: Outages in high electricity price regions (`RES.PRICE` > national median)  
-- **Group Y**: Outages in low electricity price regions (`RES.PRICE` ≤ national median)  
+- **Group X:** Outages in high electricity price regions (`RES.PRICE` > national median)  
+- **Group Y:** Outages in low electricity price regions (`RES.PRICE` ≤ national median)  
 
 **Evaluation Metric:** RMSE (Root Mean Squared Error)  
 
@@ -251,7 +253,8 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 **Significance Level:** α = 0.05  
 **p-value:** 0.5850
 
-**Conclusion:**  
+**Conclusion:**
+
 Fail to reject the null hypothesis (p-value = 0.5850 > 0.05). There is no statistically significant difference in MAE between cold and warm climate regions. The observed error difference (-50.02 minutes) is consistent with random chance under the null hypothesis of fairness.
 
 **Recommendation:**  
