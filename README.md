@@ -144,7 +144,7 @@ Research question: is the absence of OUTAGE.DURATION dependent on the year?
   frameborder="0"
 ></iframe>
 
-**summarize**
+**Summarize**
 
 The analysis showed that there was no significant difference in year distribution between the missing and non-missing groups, and that missing outage length was not related to year (p > 0.05), refuting the influence of temporal factors on missing patterns. The data collection process and missing mechanism remained stable during 2000-2016, ruling out time-related explanations such as “imperfect records in the early years” or “system improvements in recent years”. As a result, no year-specific data correction was required, analyses were comparable across years, and missingness mechanisms remained consistent over the study period.
 
@@ -200,7 +200,7 @@ The model is evaluated using Root Mean Squared Error (RMSE), as this metric pena
 
 ## Baseline Model
 
-My model is a regression model that uses the features `CLIMATE.CATEGORY, `YEAR`, and `RES.PRICE` to predict the duration of a major power outage in minutes. This information can help energy providers better prepare for the severity of outages and appropriate response strategies, such as  infrastructure planning.
+My model is a regression model that uses the features `CLIMATE.CATEGORY`, `YEAR`, and `RES.PRICE` to predict the duration of a major power outage in minutes. This information can help energy providers better prepare for the severity of outages and appropriate response strategies, such as  infrastructure planning.
 The features are:
 
 `CLIMATE.CATEGORY (nominal)`, `YEAR (ordinal)` and `RES.PRICE (quantitative)`. The target column OUTAGE.DURATION is continuous, and it is measured in minutes. The data is heavily skewed due to a small number of extremely long outages.
@@ -209,18 +209,18 @@ The performance of this baseline model was modest, with an RMSE of 8919.55 minut
 
 ## Final Model
 
-For my final model, I used a RandomForestRegressor and included the original features from the baseline model，**CLIMATE.CATEGORY**, **YEAR**, **RES.PRICE**, and also two new engineered features: **YEAR_BUCKET** and **LOG_RES.PRICE**. 
+For my final model, I used a RandomForestRegressor and included the original features from the baseline model，`CLIMATE.CATEGORY`, `YEAR`, `RES.PRICE`, and also two new engineered features: `YEAR_BUCKET` and `LOG_RES.PRICE`. 
 
-**YEAR_BUCKET** groups years into 5-year intervals to simplify time-based patterns, while **LOG_RES.PRICE** is the log-transformed version of residential electricity price, which helps reduce the impact of extreme values.
+`YEAR_BUCKET` groups years into 5-year intervals to simplify time-based patterns, while `LOG_RES.PRICE` is the log-transformed version of residential electricity price, which helps reduce the impact of extreme values.
 
 These features were designed to help the model capture patterns more effectively, especially given how skewed the outage durations are.
 
 I applied a StandardScaler to the numerical features to stabilize model training. I considered using a QuantileTransformer to better handle outliers, but it caused instability and repetitive warnings during cross-validation. Eventually, StandardScaler was chosen because it's simple and effective, especially with tree-based models like Random Forest.
 
 I used GridSearchCV to find the best hyperparameters and these were:
-- n_estimators: 200
-- max_depth: 10
-- min_samples_split: 2
+- **n_estimators:** 200
+- **max_depth:** 10
+- **min_samples_split:** 2
 
 After training, the model achieved an RMSE of 8292.16 minutes, which is an improvement over the baseline model’s RMSE of 8919.55. It shows that adding relevant features and tuning the model carefully can lead to better performance, especially on data with a lot of variation like this.
 
@@ -236,27 +236,11 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 - Null Hypothesis (H₀): The model is fair. RMSE for Group X and Group Y are equal.  
 - Alternative Hypothesis (H₁): The model is unfair. RMSE for Group X (high-price) is higher than Group Y.
 
-<iframe
-  src="assets/rmse_comparison.html"
-  width="700"
-  height="600"
-  frameborder="0"
-></iframe>
-
-<iframe
-  src="assets/rmse_permutation_test.html"
-  width="700"
-  height="600"
-  frameborder="0"
-></iframe>
 
 **Test Statistic:** Difference in RMSE (RMSE_X - RMSE_Y)  
 **Significance Level:** α = 0.05  
-**p-value:** 0.013
+**p-value:** 
 
 **Conclusion:**  
-Since the p-value (0.013) is less than the significance level (0.05), we reject the null hypothesis.
-There is statistically significant evidence that the model performs worse in high electricity price regions (Group X) than in low-price regions (Group Y), indicating potential unfairness.
 
 **Recommendation:**  
-It is recommended to conduct a deeper audit of model performance across socioeconomic lines, particularly focusing on pricing disparities. Consider incorporating fairness-aware training techniques or region-specific adjustments to mitigate the observed bias in predictive error.
