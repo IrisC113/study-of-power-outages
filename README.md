@@ -138,7 +138,7 @@ Research question: does the absence of `OUTAGE.DURATION` depend on climate categ
 
 **summarize**
 
-The analysis shows that there is a significant difference between the missing and non-missing groups in terms of climate categories, and in particular, warm climate zones have a higher rate of missing outage durations, which supports the NMAR hypothesis. Higher temperatures lead to higher grid loads and longer outage durations, which in turn result in missing data, and thus lower outage data completeness in warmer climate zones. The results of the analysis may underestimate the average length of outages in the region, and it is recommended to prioritize the deployment of real-time monitoring systems in warm climate zones to improve data completeness.
+The analysis shows that there is a clear difference between the missing and non-missing groups in terms of climate categories, and in particular, warm climate zones have a higher rate of missing outage durations, which supports the NMAR hypothesis. Higher temperatures lead to higher grid loads and longer outage durations, which in turn result in missing data, and thus lower outage data completeness in warmer climate zones. The results of the analysis may underestimate the average length of outages in the region, and it is recommended to prioritize the deployment of real-time monitoring systems in warm climate zones to improve data completeness.
 
 #### **Year Analysis**
 Research question: is the absence of OUTAGE.DURATION dependent on the year?
