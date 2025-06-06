@@ -177,16 +177,21 @@ We tested whether there is a significant linear correlation between outage durat
   frameborder="0"
 ></iframe>
 
-### Results
-
-- **Observed correlation coefficient**: 0.0100
-- **Placement test p-value**: 0.7025
+- **Observed correlation coefficient**: 0.0044
+- **Placement test p-value**: 0.8666
 - **Significance level**: α = 0.05
 
-### Conclusion 
-The analysis provides no substantive evidence for a linear relationship between outage duration and electricity prices. The statistically significant group difference warrants further investigation but should not be interpreted as evidence of a direct relationship between these specific variables without additional controls.
+**Conclusion**
+Fail to reject the null hypothesis (p-value = 0.8666 > 0.05). There is no statistically significant linear correlation between outage duration and residential electricity prices. The observed correlation coefficient (0.0044) is consistent with random chance under the null hypothesis of no correlation.
 
-**Final Recommendation**: tariff policy development should focus on regional economic factors rather than outage duration, and it is also recommended that more data on regional characteristics be collected to explain the observed patterns of tariff differences.
+**Final Recommendation:**
+1. Exclude electricity price as a predictor for outage duration in models, as no significant correlation exists.
+
+2. Focus on stronger predictors (e.g., climate conditions, infrastructure age) identified during EDA.
+
+3. Investigate nonlinear relationships between price and outage duration using alternative methods (e.g., mutual information).
+
+4. Verify data quality of electricity price measurements to ensure reliability.
 
 ## Framing a Prediction Problem
 
