@@ -237,7 +237,14 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 - Alternative Hypothesis (H₁): The model is unfair. RMSE for Group X (high-price) is higher than Group Y.
 
 <iframe
-  src="assets/rmse_diff_bootstrap_distribution.html"
+  src="assets/rmse_comparison.html"
+  width="700"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/rmse_permutation_test.html"
   width="700"
   height="600"
   frameborder="0"
@@ -245,10 +252,11 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 
 **Test Statistic:** Difference in RMSE (RMSE_X - RMSE_Y)  
 **Significance Level:** α = 0.05  
-**p-value:** 0.42
+**p-value:** 0.013
 
 **Conclusion:**  
-Based on the statistical analysis (p = 0.42 > 0.05), we fail to reject the null hypothesis, indicating that the observed RMSE difference of -0.008 minutes between high and low electricity price regions is not statistically significant. This suggests that the model’s prediction error in high-price areas is slightly lower, but the difference is likely due to random variation. Therefore, there is no evidence that the model performs unfairly in high-price regions, demonstrating compliance with fairness requirements.
+Since the p-value (0.013) is less than the significance level (0.05), we reject the null hypothesis.
+There is statistically significant evidence that the model performs worse in high electricity price regions (Group X) than in low-price regions (Group Y), indicating potential unfairness.
 
 **Recommendation:**  
-Maintain the current model without region-specific adjustments related to electricity price. Implement ongoing monitoring of model stability through periodic recalculation of RMSE differences between groups and automate fairness testing workflows. Additionally, expand fairness analysis to include other sensitive subgroups, such as climatic zones and socioeconomic factors. For future improvements, consider incorporating features unique to high-price areas and investigating potential nonlinear relationships between electricity price and outage duration.
+It is recommended to conduct a deeper audit of model performance across socioeconomic lines, particularly focusing on pricing disparities. Consider incorporating fairness-aware training techniques or region-specific adjustments to mitigate the observed bias in predictive error.
