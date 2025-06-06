@@ -117,7 +117,11 @@ The length of the outage must be at the end of the event before it can be record
 
 This additional information allows us to interpret the missing by features such as whether the event duration exceeds the report time.
 
-<iframe src="assets/missing_values.html" width="700" height="600" frameborder="0"></iframe>
+<iframe
+  src="assets/missing_values.html"
+  width="700" height="600"
+  frameborder="0"
+></iframe>
 
 ### Missingness Dependency Analysis
 I will analyze the dependencies with `CLIMATE.CATEGORY` and `YEAR` for the missing case of `OUTAGE.DURATION` following the sample structure you provided.
