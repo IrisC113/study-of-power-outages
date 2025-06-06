@@ -227,20 +227,33 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 ## Fairness Analysis
 
 **Groups:**  
-- **Group X**: Outages in high electricity price regions (RES.PRICE > national median)  
-- **Group Y**: Outages in low electricity price regions (RES.PRICE ≤ national median)  
+- **Group X**: Outages in high electricity price regions (`RES.PRICE` > national median)  
+- **Group Y**: Outages in low electricity price regions (`RES.PRICE` ≤ national median)  
 
 **Evaluation Metric:** RMSE (Root Mean Squared Error)  
 
 **Hypotheses:**  
-- Null Hypothesis (H₀): The model is fair. RMSE for Group X and Group Y are equal.  
-- Alternative Hypothesis (H₁): The model is unfair. RMSE for Group X (high-price) is higher than Group Y.
+- **Null Hypothesis (H₀):** The model is fair. RMSE for Group X and Group Y are equal.  
+- **Alternative Hypothesis (H₁):** The model is unfair. RMSE for Group X (high-price) is higher than Group Y.
+<iframe
+  src="assets/permutation-test-cold-warm.html"
+  width="1000"
+  height="700"
+  frameborder="0"
+></iframe>
 
-
-**Test Statistic:** Difference in RMSE (RMSE_X - RMSE_Y)  
+**Test Statistic:** Observed Mean Absolute Error Difference (cold - warm): -50.02 minutes  
 **Significance Level:** α = 0.05  
-**p-value:** 
+**p-value:** 0.5850
 
 **Conclusion:**  
+Fail to reject the null hypothesis (p-value = 0.5850 > 0.05). There is no statistically significant difference in MAE between cold and warm climate regions. The observed error difference (-50.02 minutes) is consistent with random chance under the null hypothesis of fairness.
 
 **Recommendation:**  
+1. No fairness intervention needed for climate-based groups, as the model does not show significant performance disparity.
+
+2. Continue monitoring MAE for climate groups during model updates to detect emerging biases.
+
+3. Investigate other protected attributes (e.g., socioeconomic regions, grid infrastructure) to ensure broad fairness coverage.
+
+4. Explore why cold regions show slightly better performance (negative MAE difference) despite statistical insignificance—this may reveal hidden robustness factors.
