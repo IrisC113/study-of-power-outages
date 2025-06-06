@@ -108,7 +108,7 @@ We focus on the missing pattern in the `OUTAGE.DURATION` column as belonging to 
 
 **Basis:**
 
-the length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
+The length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
 
 **Converted to MAR Recommendation:** the following data need to be added 
   - Outage event status (resolved or not)  
