@@ -118,7 +118,7 @@ The length of the outage must be at the end of the event before it can be record
 This additional information allows us to interpret the missing by features such as whether the event duration exceeds the report time.
 
 <iframe
-  src="assets/missing_values.html"
+  src="assets/climate-missingness-permutation-test.html"
   width="700" height="600"
   frameborder="0"
 ></iframe>
@@ -142,7 +142,14 @@ Research question: does the absence of `OUTAGE.DURATION` depend on climate categ
 
 **Summarize**
 
-The analysis shows that there is a clear difference between the missing and non-missing groups in terms of climate categories, and in particular, warm climate zones have a higher rate of missing outage durations, which supports the NMAR hypothesis. Higher temperatures lead to higher grid loads and longer outage durations, which in turn result in missing data, and thus lower outage data completeness in warmer climate zones. The results of the analysis may underestimate the average length of outages in the region, and it is recommended to prioritize the deployment of real-time monitoring systems in warm climate zones to improve data completeness.
+There was a significant association between climate category and missing outage duration (p=0.042). The replacement test rejected the original hypothesis, indicating that the pattern of missing `OUTAGE.DURATION` was statistically different in different climatic regions. Visualization of the data reveals a clear pattern: **Warm** have the highest percentage of missing outage durations, **Cold** have the lowest percentage of missing durations, and **Normal** fall in between. This systematic variation suggests that missing data is not random and may be related to climate-related operational processes, reporting mechanisms, or infrastructure characteristics. The results of this analysis suggest the need to consider the impact of climate factors on data completeness in subsequent studies and to apply targeted treatmentsto avoid biased conclusions.
+
+<iframe
+  src="assets/year-missingness-permutation-test-blue.html"
+  width="700"
+  height="600"
+  frameborder="0"
+></iframe>
 
 #### **Year Analysis**
 Research question: is the absence of OUTAGE.DURATION dependent on the year?
@@ -160,7 +167,14 @@ Research question: is the absence of OUTAGE.DURATION dependent on the year?
 
 **Summarize**
 
-The analysis showed that there was no significant difference in year distribution between the missing and non-missing groups, and that missing outage length was not related to year (p > 0.05), refuting the influence of temporal factors on missing patterns. The data collection process and missing mechanism remained stable during 2000-2016, ruling out time-related explanations such as “imperfect records in the early years” or “system improvements in recent years”. As a result, no year-specific data correction was required, analyses were comparable across years, and missingness mechanisms remained consistent over the study period.
+Based on the results of the permutation test, both climate category (p=0.042) and year (p=0.026) are significantly associated with missing outage duration, indicating a systematic bias in the missing pattern: the missing rate is significantly higher in warm climate zones than in cold climate zones, and the year dimension presents a fluctuating characteristic of early (2000-2003) and recent (2014-2016) missing peaks, and a mid-term (2005- 2010) trough fluctuations. These non-random missingness patterns suggest that data correction for climatic and chronological factors is needed in the actual analysis to avoid biased conclusions.
+
+<iframe
+  src="assets/year-missingness-permutation-test-blue.html"
+  width="700"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ## Hypothesis Testing
 
@@ -168,21 +182,20 @@ We tested whether there is a significant linear correlation between outage durat
 
 ### Research Problem
 
-**Null Hypothesis(H₀):** Outage duration is not linearly correlated with electricity prices (ρ = 0).
+**Null Hypothesis(H₀)**: Outage duration is not linearly correlated with electricity prices (ρ = 0)
 
-**Alternative hypothesis (H₁):** Outage duration is linearly correlated with electricity price (ρ ≠ 0).
+**Alternative hypothesis (H₁)**: Outage duration is linearly correlated with electricity price (ρ ≠ 0)
 
-### Test Methods
-
+**Test Methods**
 1. Verify the correlation using the **Permutation test**:
-   - Calculate the observed Pearson correlation coefficient (r = 0.0100).
-   - Establish the null distribution by 10,000 random permutations.
-   - Calculate how extreme the observations are in the null distribution.
+   - Calculate the observed Pearson correlation coefficient (r = 0.0100)
+   - Establish the null distribution by 10,000 random permutations
+   - Calculate how extreme the observations are in the null distribution
 
 2. Rationale for selection:
-   - Displacement test does not rely on normal distribution assumptions.
-   - More robust than traditional t-test.
-   - Good for medium sample size (n=1459).
+   - Displacement test does not rely on normal distribution assumptions
+   - More robust than traditional t-test
+   - Good for medium sample size (n=1459)
 
 <iframe
   src="assets/permutation-test-corr.html"
@@ -191,22 +204,12 @@ We tested whether there is a significant linear correlation between outage durat
   frameborder="0"
 ></iframe>
 
-- **Observed correlation coefficient:** 0.0044
-- **Placement test p-value:** 0.8666
-- **Significance level:** α = 0.05
+- **Observed correlation coefficient**: 0.0100
+- **Permutation test p-value**: 0.7025
+- **Significance level**: α = 0.05
 
-**Conclusion:**
-
-Fail to reject the null hypothesis (p-value = 0.8666 > 0.05). There is no statistically significant linear correlation between outage duration and residential electricity prices. The observed correlation coefficient (0.0044) is consistent with random chance under the null hypothesis of no correlation.
-
-**Final Recommendation:**
-1. Exclude electricity price as a predictor for outage duration in models, as no significant correlation exists.
-
-2. Focus on stronger predictors (e.g., climate conditions, infrastructure age) identified during EDA.
-
-3. Investigate nonlinear relationships between price and outage duration using alternative methods (e.g., mutual information).
-
-4. Verify data quality of electricity price measurements to ensure reliability.
+**Conclusion**
+Fail to reject the null hypothesis (p-value = 0.7025 > 0.05). There is no statistically significant linear correlation between outage duration and residential electricity prices. The observed correlation coefficient (0.0100) is consistent with random chance under the null hypothesis of no correlation.
 
 ## Framing a Prediction Problem
 
@@ -246,15 +249,16 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 
 ## Fairness Analysis
 
-**Groups:**  
-- **Group X:** Outages in high electricity price regions (`RES.PRICE` > national median)  
-- **Group Y:** Outages in low electricity price regions (`RES.PRICE` ≤ national median)  
+My groups for the fairness analysis are cold vs. warm climate categories. This is defined based on the **CLIMATE.CATEGORY**, where Group X includes all observations labeled as “cold” and Group Y includes those labeled as “warm.” I chose these two groups because climate plays a big role in power outages. They could affect how accurately the model predicts outage durations. I wanted to see if my model was equally accurate across these different climate types.
 
-**Evaluation Metric:** RMSE (Root Mean Squared Error)  
+My evaluation metric is Mean Absolute Error (MAE) since this is a regression model and MAE directly quantifies prediction error in minutes. I used permutation tests to compare the MAE for cold vs. warm climates under label shuffling, and then compared this distribution to my initially observed MAE difference.
 
-**Hypotheses:**  
-- **Null Hypothesis (H₀):** The model is fair. RMSE for Group X and Group Y are equal.  
-- **Alternative Hypothesis (H₁):** The model is unfair. RMSE for Group X (high-price) is higher than Group Y.
+- **Null Hypothesis:** The model is fair. Its MAEs for cold and warm climate regions are roughly the same.
+- **Alternative Hypothesis:** The model is unfair. Its MAE for cold regions is significantly higher than that for warm regions.
+
+I performed a permutation test with 1000 trials, using a significance level of 0.05. The observed mean absolute error difference was −50.02 minutes, and the resulting p-value was 0.5850. Because this is above the significance level, I fail to reject the null hypothesis. The model does not appear to perform significantly worse for cold climate categories.
+
+The figure below shows the distribution of the test statistic.
 
 <iframe
   src="assets/permutation-test-cold-warm.html"
@@ -267,15 +271,6 @@ After training, the model achieved an RMSE of 8292.16 minutes, which is an impro
 **Significance Level:** α = 0.05  
 **p-value:** 0.5850
 
-**Conclusion:**
+**Conclusion:**  
 
 Fail to reject the null hypothesis (p-value = 0.5850 > 0.05). There is no statistically significant difference in MAE between cold and warm climate regions. The observed error difference (-50.02 minutes) is consistent with random chance under the null hypothesis of fairness.
-
-**Recommendation:**  
-1. No fairness intervention needed for climate-based groups, as the model does not show significant performance disparity.
-
-2. Continue monitoring MAE for climate groups during model updates to detect emerging biases.
-
-3. Investigate other protected attributes (e.g., socioeconomic regions, grid infrastructure) to ensure broad fairness coverage.
-
-4. Explore why cold regions show slightly better performance (negative MAE difference) despite statistical insignificance—this may reveal hidden robustness factors.
