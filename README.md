@@ -41,7 +41,8 @@ In the data cleansing phase, We attempted numeric type conversion for all column
 In the univariate analysis, we focused on the distributional characteristics of the number of blackout events:
 
 * Annual trends
-A line graph shows the change in the frequency of blackout events between 2000 and 2015. The data show clear peaks in 2003, 2008 and 2011, with a maximum in 2011 (around 600 events), indicating the presence of systemic risk factors (e.g. extreme weather or aging infrastructure) in these years.
+
+A line graph shows the change in the frequency of blackout events between 2000 and 2015. The data show clear peaks in 2003, 2008 and 2011, with a maximum in 2011, indicating the presence of systemic risk factors in these years.
 
 <iframe
   src="assets/num-outages-over-time.html"
@@ -52,7 +53,7 @@ A line graph shows the change in the frequency of blackout events between 2000 a
 
 
 * Climate category distribution
-A bar chart was used to compare the frequency of outages under different climatic conditions.” Normal” climate has the highest share of outages (about 75%), while ‘cold’ and ‘warm’ climates account for 15% and 10%, respectively, suggesting that the vulnerability of the grid is more of a concern in regular climate conditions.
+A bar chart was used to compare the frequency of outages under different climatic conditions.” Normal” climate has the highest share of outages, while ‘cold’ and ‘warm’ climates, respectively, suggesting that the vulnerability of the grid is more of a concern in regular climate conditions.
 
 <iframe
   src="assets/outages-by-climate.html"
@@ -66,7 +67,8 @@ A bar chart was used to compare the frequency of outages under different climati
 In a bivariate analysis, we explored the association of outage duration with other variables:
 
 * Climate regional shadows
-Regional variability is revealed through a strip chart, with the Southeast (Southeast) having the longest median duration of outages (~8,000 minutes) and the West (West) having the shortest (~500 minutes), reflecting significant regional disparities in infrastructure resilience.
+
+Regional variability is revealed through a strip chart, with the Southeast having the longest median duration of outages and the West having the shortest, reflecting significant regional disparities in infrastructure resilience.
 
 <iframe
   src="assets/outage-duration-by-region.html"
@@ -76,7 +78,8 @@ Regional variability is revealed through a strip chart, with the Southeast (Sout
 ></iframe>
 
 * Electricity price correlation
-The scatterplotshows a weak positive correlation between electricity prices and outage length (R² ≈ 0.18), with extreme cases of long outages (>50,000 minutes) occurring in areas of high electricity prices (>25 cents/kWh), suggesting that regulatory policy or underinvestment may be driving up both electricity prices and outage risk.
+
+The scatterplotshows a weak positive correlation between electricity prices and outage length, with extreme cases of long outages occurring in areas of high electricity prices, suggesting that regulatory policy or underinvestment may be driving up both electricity prices and outage risk.
 
 <iframe
   src="assets/outage-vs-resprice.html"
@@ -88,11 +91,11 @@ The scatterplotshows a weak positive correlation between electricity prices and 
 ### Interesting Aggregates
 By grouping average outage lengths (in minutes) by climate region, we find significant geographic differences in grid stability:
 
-- East North Central has the highest average outage duration (5,389 minutes ≈ 90 hours), well above the national average;
+- East North Central has the highest average outage duration, well above the national average;
 
-- West and Southwest perform best (1,628 minutes and 1,566 minutes ≈ 27 hours);
+- West and Southwest perform best.
 
-- West North Central had the fastest recovery (only 697 minutes ≈ 11.6 hours).
+- West North Central had the fastest recovery.
 
 <iframe
   src="assets/avg-duration-by-region.html"
@@ -106,11 +109,10 @@ By grouping average outage lengths (in minutes) by climate region, we find signi
 ### NMAR Analysis
 We focus on the missing pattern in the `OUTAGE.DURATION` column as belonging to **NMAR (Non-Missing at Random):** 
 
-**Basis:**
+**Basis**: the length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. 
+            probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
 
-The length of the outage must be at the end of the event before it can be recorded. If the outage has not been restored (duration unknown), the utility cannot report the data. probability of missing depends on the unobserved value itself (the longer the duration, the more likely it is to be missing due to non-ending)
-
-**Converted to MAR Recommendation:** the following data need to be added 
+**Converted to MAR Recommendation**: the following data need to be added 
   - Outage event status (resolved or not)  
   - Report submission timestamp  
   - Event start time  
@@ -124,14 +126,15 @@ This additional information allows us to interpret the missing by features such 
 ></iframe>
 
 ### Missingness Dependency Analysis
-I will analyze the dependencies with `CLIMATE.CATEGORY` and `YEAR` for the missing case of `OUTAGE.DURATION` following the sample structure you provided.
+I will analyze the dependencies with `CLIMATE.CATEGORY` and `YEAR` for the missing case of `OUTAGE.DURATION`.
 
 #### **Climate Category Analysis**
+
 Research question: does the absence of `OUTAGE.DURATION` depend on climate category?
 
-- **Null hypothesis (H₀):** the distribution of climate categories is the same in the time-length missing and non-missing groups.
+- **Null hypothesis (H₀)**: the distribution of climate categories is the same in the time-length missing and non-missing groups
 
-- **Alternative hypothesis (H₁):** the distribution of climate categories is different in the time-length missing and non-missing groups.
+- **Alternative hypothesis (H₁)**: the distribution of climate categories is different in the time-length missing and non-missing groups
 
 <iframe
   src="assets/climate-missingness-proportion.html"
