@@ -52,8 +52,7 @@ A line graph shows the change in the frequency of blackout events between 2000 a
 ></iframe>
 
 
-* Climate category distribution
-A bar chart was used to compare the frequency of outages under different climatic conditions.” Normal” climate has the highest share of outages, while ‘cold’ and ‘warm’ climates, respectively, suggesting that the vulnerability of the grid is more of a concern in regular climate conditions.
+* Climate category distribution A bar chart was used to compare the frequency of outages under different climatic conditions.” Normal” climate has the highest share of outages, while outages in "cold" and "warm" climates occur less frequently, respectively., suggesting that the vulnerability of the grid is more of a concern in regular climate conditions.
 
 <iframe
   src="assets/outages-by-climate.html"
