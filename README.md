@@ -118,7 +118,7 @@ The length of the outage must be at the end of the event before it can be record
 This additional information allows us to interpret the missing by features such as whether the event duration exceeds the report time.
 
 <iframe
-  src="assets/climate-missingness-permutation-test.html"
+  src="assets/missing_values.html"
   width="700" height="600"
   frameborder="0"
 ></iframe>
