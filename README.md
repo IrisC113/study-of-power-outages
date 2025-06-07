@@ -1,6 +1,6 @@
 # Dark Data: Exploring Power Outage
 
-**Name:** Shujia Chen, Qi Zhang(Sort by last name)
+**Name:** Shujia Chen, Qi Zhang
 
 ### Overview
 
@@ -146,7 +146,7 @@ There was a significant association between climate category and missing outage 
 
 <iframe
   src="assets/year-missingness-permutation-test-blue.html"
-  width="700"
+  width="800"
   height="600"
   frameborder="0"
 ></iframe>
@@ -171,7 +171,7 @@ Based on the results of the permutation test, both climate category (p=0.042) an
 
 <iframe
   src="assets/year-missingness-permutation-test-blue.html"
-  width="700"
+  width="800"
   height="600"
   frameborder="0"
 ></iframe>
